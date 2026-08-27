@@ -1,0 +1,37 @@
+# This working directory holds participant data -- imaging, DICOMs, behavioural
+# logs, fMRIPrep output. So this file denies everything by default and allows
+# back only the code and documentation. A new data folder dropped in here is
+# ignored automatically; a new *script* has to be allowed below before git will
+# see it. That is the intended trade: forgetting to add a script is a nuisance,
+# forgetting to exclude a scan is a disclosure.
+#
+# Check what would actually be committed with:
+#     git add -A && git status --short
+# and confirm with:
+#     git ls-files
+
+*
+
+# --- allowed ---------------------------------------------------------------
+!.gitignore
+!README.md
+!scripts/
+!scripts/**/*.py
+!scripts/**/*.sh
+
+# --- never, even under scripts/ --------------------------------------------
+__pycache__/
+*.pyc
+.DS_Store
+
+# Participant-identifying output. Listed explicitly as well as being covered by
+# the deny-all above, so the intent survives anyone relaxing the rules.
+bids/
+dicoms/
+derivatives/
+behavioral/
+fmriprep*/
+*_events.tsv
+participants.tsv
+events_qc.csv
+bids_validator_output*.txt
